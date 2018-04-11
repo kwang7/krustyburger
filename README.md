@@ -22,6 +22,29 @@ Rust:
 
 -Relatively new, not as rooted in industry
 
+### Hello World
+```rust
+fn main(){
+	println!("Hello World!");
+}
+```
+From Hello World, we can see that it shares welcome similarities with C style languages:
+
+* Code blocks are wrapped with {}
+* Code lines are ended with ;
+* It has a main()
+* And other minor syntax conventions
+
+### Cargo, the Package Manager
+
+A package manager keeps track of dependencies and makes the task of compiling and optimizing a project extremely simple
+```
+cargo new hello_cargo --bin #creates a new project that cargo will keep track of. --bin means that you will have a binary file within it.
+cd hello_cargo
+cargo build #builds the project
+cargo run #runs the project
+```
+
 
 
 ### Ownership in Rust
