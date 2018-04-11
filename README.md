@@ -95,7 +95,7 @@ fn change(some_string: &mut String) {
 Limits on mutable and immutable references:
 
 ```
-let mut s = String::from("hello")
+let mut s = String::from("hello");
 let r1 = &s; //nice
 let r2 = &s; //cool
 let r3 = &mut s; //NO WAY
@@ -125,6 +125,25 @@ fn main() {
             thread::sleep(Duration::from_millis(1));
        }
     });
+    for i in 1..5 {
+       println!("result {} from the main thread!", i);
+       thread::sleep(Duration::from_millis(1));
+  }
+}
+```
+
+```
+use std::thread;
+use std::time::Duration;
+
+fn main() {
+    let handle = thread::spawn(|| {
+       for i in 1..10 {
+            println!("result {} from the spawned thread!", i);
+            thread::sleep(Duration::from_millis(1));
+       }
+    });
+    handle.join();
     for i in 1..5 {
        println!("result {} from the main thread!", i);
        thread::sleep(Duration::from_millis(1));
