@@ -1,6 +1,6 @@
 ## Welcome to Rust
 
-Rust is blahb blahb albhalbh
+Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.
 
 ###  hahaha
 
@@ -114,6 +114,7 @@ let r2 = &mut s; //not good
 ### Threads
 Threads can be used to run code simutaneously. However, THREADS ARE NOT SAFE! Often, they encounter problems like race conditions, deadlocks, and other bugs. Rust has features that make threads safer.
 
+Here's a way we can create a new thread using ```thread::spawn```.
 ```
 use std::thread;
 use std::time::Duration;
@@ -131,6 +132,21 @@ fn main() {
   }
 }
 ```
+The new thread prints one thing while the main thread prints something else. In this case, the new thread will stop running when the main thread does. The results would look similar to:
+
+```
+result 1 from the main thread!
+result 1 from the spawned thread!
+result 2 from the main thread!
+result 2 from the spawned thread!
+result 3 from the main thread!
+result 3 from the spawned thread!
+result 4 from the main thread!
+result 4 from the spawned thread!
+```
+Using ```thread::sleep``` forces the thread to stop running for a specified amount of time so the other one can run. It's not always guaranteed that the threads will alternate--that depends on the way your operating system schedules the threads. 
+
+There is no guarantee about the order that the threads run or even if they run at all. In the above example, the spawned thread doesn't get to finish running. That's okay. Rust has something called a join handle that fixes this:
 
 ```
 use std::thread;
@@ -143,7 +159,9 @@ fn main() {
             thread::sleep(Duration::from_millis(1));
        }
     });
-    handle.join();
+    
+    handle.join(); //here's a join handle!! since it's called after the spawned thread, that's the thread it represents.
+    
     for i in 1..5 {
        println!("result {} from the main thread!", i);
        thread::sleep(Duration::from_millis(1));
@@ -151,3 +169,20 @@ fn main() {
 }
 ```
 
+Calling a join handle blocks a thread from running until the thread that it represents has finished running. The results would look like:
+
+```
+result 1 from the spawned thread!
+result 2 from the spawned thread!
+result 3 from the spawned thread!
+result 4 from the spawned thread!
+result 5 from the spawned thread!
+result 6 from the spawned thread!
+result 7 from the spawned thread!
+result 8 from the spawned thread!
+result 9 from the spawned thread!
+result 1 from the main thread!
+result 2 from the main thread!
+result 3 from the main thread!
+result 4 from the main thread!
+```
