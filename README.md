@@ -2,9 +2,26 @@
 
 Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.
 
-###  hahaha
+###  So why Rust?
 
-hehehehehhe
+You might be wondering "Why Rust? Why not C or C++?". Allow me to list out the pros and cons of each.
+
+C/C++:
+
++Industry favorite for a very long time
+
++Fast
+
+-Can be dangerous if user is not skilled
+
+Rust:
+
++Fast
+
++Safe for newer/inexperienced users
+
+-Relatively new, not as rooted in industry
+
 
 
 ### Ownership in Rust
