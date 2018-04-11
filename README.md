@@ -1,37 +1,40 @@
-## Welcome to GitHub Pages
+## Welcome to Rust
 
-You can use the [editor on GitHub](https://github.com/kwang7/krustyburger/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Rust is blahb blahb albhalbh
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+###  hahaha
 
-### Markdown
+hehehehehhe
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+### Ownership in Rust
 
-# Header 1
-## Header 2
-### Header 3
+The Three Rules of Ownership
 
-- Bulleted
-- List
+- Each value has a variable that’s called its owner.
+- There can only be one owner at a time.
+- When the owner goes out of scope, the value will be dropped.
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
 ```
+  let s = String::from("hello");
+  S is the owner of the string "hello"
+  ```  
+  
+Here's an example code that will not compile:
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+  ```
+  fn main() {
+    let foo = String::from("cool String");
+    let bar = foo;
+    println!("{}", foo);
+}
+  
+```
+After we assign foo as the owner of "cool String" and then assign bar as the owner of foo, ownership of "cool String" is moved from bar to foo. Now, foo is not longer a valid reference and cannot be used.
 
-### Jekyll Themes
+### Borrowing in Rust
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kwang7/krustyburger/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
+##### Ss
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
